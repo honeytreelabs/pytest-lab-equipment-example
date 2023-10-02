@@ -49,11 +49,12 @@ def test_dc_dc_converter_parametrized(
     rigol_dl3021.resistance = dc_load
     rigol_dl3021.active = True
 
+    # wait until all components (e.g. capacitors) have adjusted to the current parameters
     time.sleep(5)
 
     measurement = peaktech_2025.read_measurement()
     logging.info(f'DMM: {measurement}')
     assert measurement.unit == "VDC", "DMM dial is not set to VDC"
     assert measurement.value < 13, "DC-DC converter output voltage outside expected range"
-    if dc_load_watts <= input_amperage * input_amperage:
+    if dc_load_watts <= input_voltage * input_amperage:
         assert measurement.value > 11, "DC-DC converter output voltage outside expected range"
