@@ -1,0 +1,4 @@
+PyVISA-py==0.7.0
+Riden @ git+https://github.com/honeytreelabs/Riden.git@dev-fix-typing-hints
+pyudev==0.22.0
+pytest==7.4.0
